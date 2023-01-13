@@ -1,7 +1,7 @@
-const example = require("./methods/example");
+const addSpace = require("./methods/addSpace");
 
 const AppController = {
-  example,
+  addSpace,
 };
 
 module.exports = AppController;

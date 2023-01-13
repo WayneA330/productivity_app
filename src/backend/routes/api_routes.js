@@ -1,5 +1,5 @@
 const AppController = require("../controllers/App/AppController");
 
 module.exports = (router) => {
-  router.post("/add-example", AppController.example);
+  router.post("/add-space", AppController.addSpace);
 };

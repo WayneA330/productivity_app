@@ -1,7 +1,7 @@
 const URL = "http://localhost:3088";
 
 const api = {
-  EXAMPLE: `${URL}/add-example`,
+  ADD_SPACE: `${URL}/add-space`,
 };
 
 export default api;
