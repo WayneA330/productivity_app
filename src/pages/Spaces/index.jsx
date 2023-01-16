@@ -13,14 +13,14 @@ import AddSpace from "./Modals/AddSpace";
 import { useQuery } from "react-query";
 import { getData } from "../../api/methods";
 import api from "../../api/api";
-import { useSnackbar } from "notistack";
+import { useNavigate } from "react-router-dom";
 
 const Spaces = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const { data: spaces, isError } = useQuery(["addSpace"], () =>
     getData({ url: api.GET_SPACES })
@@ -73,7 +73,10 @@ const Spaces = () => {
           {spaces?.map((space, index) => (
             <>
               <ListItem disablePadding key={index}>
-                <ListItemButton sx={{ width: "100%" }}>
+                <ListItemButton
+                  sx={{ width: "100%" }}
+                  onClick={() => navigate(`/spaces/${space?.space_id}`)}
+                >
                   <ListItemText
                     color="white"
                     primary={space?.name}

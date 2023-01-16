@@ -4,13 +4,14 @@ import { ReusableModal } from "../../../components/ReusableModal";
 import * as yup from "yup";
 import { Box, Button, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { postData } from "../../../api/methods";
 import api from "../../../api/api";
 import { useSnackbar } from "notistack";
 
 const AddSpace = ({ open, handleClose, title, width }) => {
   const { enqueueSnackbar } = useSnackbar();
+  const queryClient = useQueryClient();
 
   // Add Space Mutation
   const addSpace = useMutation(
@@ -20,12 +21,13 @@ const AddSpace = ({ open, handleClose, title, width }) => {
     {
       onSuccess: (data) => {
         handleClose();
+        queryClient.invalidateQueries("addSpace");
         enqueueSnackbar("Successfully added space!", {
           variant: "success",
         });
       },
       onError: (error) => {
-        enqueueSnackbar("Error occured when adding product!", {
+        enqueueSnackbar("Error occured when adding space!", {
           variant: "error",
         });
       },

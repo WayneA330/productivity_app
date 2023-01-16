@@ -10,7 +10,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <SnackbarProvider>
+      <SnackbarProvider
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "right",
+        }}
+      >
         <App />
       </SnackbarProvider>
     </QueryClientProvider>
