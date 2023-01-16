@@ -31,7 +31,7 @@ export const ReusableModal = ({
           sx={{
             display: "flex",
             justifyContent: "space-between",
-            marginBottom: "10px",
+            marginBottom: "15px",
           }}
         >
           <Typography variant="h5">{title}</Typography>

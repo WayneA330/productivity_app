@@ -12,15 +12,14 @@ const addSpace = async (req, res) => {
       updated_at: dayjs().toJSON(),
     });
 
-    console.log(req.body);
     res.status(200).send({
-      message: "Example successful!",
+      message: "Added space successfully!",
       payload: req?.body,
     });
   } catch (err) {
     console.log(err);
     res.status(404).send({
-      message: "Example failed!",
+      message: "Error occured when adding space!",
     });
   }
 };

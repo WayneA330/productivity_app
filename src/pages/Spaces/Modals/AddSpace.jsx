@@ -20,12 +20,12 @@ const AddSpace = ({ open, handleClose, title, width }) => {
     {
       onSuccess: (data) => {
         handleClose();
-        enqueueSnackbar("Successfully added space", {
+        enqueueSnackbar("Successfully added space!", {
           variant: "success",
         });
       },
       onError: (error) => {
-        enqueueSnackbar("Error occured when adding product", {
+        enqueueSnackbar("Error occured when adding product!", {
           variant: "error",
         });
       },

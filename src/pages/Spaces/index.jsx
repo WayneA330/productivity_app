@@ -10,29 +10,36 @@ import {
 } from "@mui/material";
 import React from "react";
 import AddSpace from "./Modals/AddSpace";
+import { useQuery } from "react-query";
+import { getData } from "../../api/methods";
+import api from "../../api/api";
+import { useSnackbar } from "notistack";
 
 const Spaces = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const spaces = [
-    {
-      id: 1,
-      name: "Bloom",
-      no_task: 8,
-    },
-    {
-      id: 2,
-      name: "Migration V2",
-      no_task: 8,
-    },
-    {
-      id: 3,
-      name: "Eglise.mu",
-      no_task: 8,
-    },
-  ];
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { data: spaces, isError } = useQuery(["addSpace"], () =>
+    getData({ url: api.GET_SPACES })
+  );
+
+  if (isError) {
+    return (
+      <h3
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        Error occured when loading spaces. Please try again later.
+      </h3>
+    );
+  }
 
   return (
     <Box m={2}>
@@ -63,18 +70,18 @@ const Spaces = () => {
         sx={{ width: "100%", backgroundColor: "#1876d2", borderRadius: "10px" }}
       >
         <List sx={{ padding: "0px" }}>
-          {spaces.map((space, index) => (
+          {spaces?.map((space, index) => (
             <>
               <ListItem disablePadding key={index}>
                 <ListItemButton sx={{ width: "100%" }}>
                   <ListItemText
                     color="white"
-                    primary={space.name}
+                    primary={space?.name}
                     sx={{ color: "white" }}
                   />
                   <ListItemText
                     color="white"
-                    primary={space.no_task}
+                    primary={"4"}
                     sx={{
                       color: "white",
                       display: "flex",
@@ -83,7 +90,7 @@ const Spaces = () => {
                   />
                 </ListItemButton>
               </ListItem>
-              {index !== spaces.length - 1 && (
+              {index !== spaces?.length - 1 && (
                 <Divider sx={{ backgroundColor: "white" }} />
               )}
             </>
