@@ -22,7 +22,7 @@ const Spaces = () => {
 
   const navigate = useNavigate();
 
-  const { data: spaces, isError } = useQuery(["addSpace"], () =>
+  const { data: spaces, isError } = useQuery(["getSpaces"], () =>
     getData({ url: api.GET_SPACES })
   );
 

@@ -21,7 +21,7 @@ const AddSpace = ({ open, handleClose, title, width }) => {
     {
       onSuccess: (data) => {
         handleClose();
-        queryClient.invalidateQueries("addSpace");
+        queryClient.invalidateQueries("getSpaces");
         enqueueSnackbar("Successfully added space!", {
           variant: "success",
         });
